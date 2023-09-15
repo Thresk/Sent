@@ -67,7 +67,7 @@ void InDuongCheoPhu(int matrix[100][100], int range)
 			{
 			int kt = KTSoNguyenTo(matrix[i][j]);
 				if (kt == 0)
-					printf("%d,", matrix[i][j]);
+					printf("%d\n", matrix[i][j]);
 			}
 		}
 	}
@@ -101,7 +101,33 @@ int SoLonThu2(int matrix[100][100],int range, int max1)
 	return max2;
 }
 
+int TachSo(int n, int range)
+{
+	int temp = n;
+	int Tong = 0;
+	for (int i = 0; i <= range; i++)
+	{
+		while (n > 0)
+		{
+			temp = n % 10;
+			Tong += temp;
+			n /= 10;
+		}
+	}
+	return Tong;
+}
 
+void TongChuSo(int matrix[100][100], int range)
+{
+	for (int i = 0; i <= range; i++)
+	{
+		for (int j = 0; j <= range; j++)
+		{
+			int Tong = TachSo(matrix[i][j], range);
+			printf("\nTong chu so o a[%d][%d] = %d", i, j, Tong);
+		}
+	}
+}
 
 void main()
 {
@@ -115,4 +141,5 @@ void main()
 	int max1 = SoLonThu1(matrix, range);
 	int max2 = SoLonThu2(matrix, range, max1);
 	printf("\nSo lon thu hai: %d", max2);
+	TongChuSo(matrix, range);
 }
